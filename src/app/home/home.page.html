@@ -1,12 +1,54 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="isPickupRequested" (click)="cancelPickup()">
+      <ion-icon name="arrow-back"></ion-icon> Cancel
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="!isPickupRequested" (click)="cancelPickup()">
+      <ion-icon name="navigate" (click)="map.centerLocation()"></ion-icon>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      <span *ngIf="isPickupRequested">On the way...</span>
+      <span *ngIf="!isPickupRequested">RideMe</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div class="map-wrapper">
+    <app-map #map [isPickupRequested]="isPickupRequested"></app-map>
+  </div>
+
+  <div class="bottom request-controls">
+    <ion-grid>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="light">
+            <ion-icon name="card"></ion-icon>
+            Visa **34
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="light">
+            <ion-icon name="cash"></ion-icon>
+            Cash
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button *ngIf="!isPickupRequested" expand="block" color="primary" (click)="confirmPickup()">Request Pickup
+          </ion-button>
+          <ion-button *ngIf="isPickupRequested" expand="block" color="secondary" (click)="cancelPickup()">Cancel Pickup
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          PICKUP TIME IS APPROXIMATELY 5 MINUTES
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

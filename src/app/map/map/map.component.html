@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div id="map"></div>
+  <app-pickup
+    [map]="map"
+    [isPinSet]="isMapIdle"
+    [isPickupRequested]="isPickupRequested"
+    (updatedPickupLocation)="updatePickupLocation($event)">
+  </app-pickup>
+  <app-available-transports
+    [map]="map"
+    [isPickupRequested]="isPickupRequested">
+  </app-available-transports>
+  <app-pickup-transport
+  [map]="map"
+  [isPickupRequested]="isPickupRequested"
+  [pickupLocation]="currentLocation">
+  </app-pickup-transport>
+</div>

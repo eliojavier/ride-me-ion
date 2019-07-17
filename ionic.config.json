@@ -1,5 +1,7 @@
 {
   "name": "rideme-ion",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
